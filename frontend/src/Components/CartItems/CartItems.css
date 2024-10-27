@@ -1,0 +1,160 @@
+/* Main cart container */
+.cartitems {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Cart item headers */
+.cartitems-format-main {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr; /* Increased gap between Title (3fr) and Price (1fr) */
+    gap: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Cart items content */
+.cartitems-format {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr; /* Same adjustment as header */
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.cartitems-format img {
+    max-width: 50px;
+}
+
+/* Quantity button */
+.cartitems-quantity {
+    width: 40px;
+    height: 40px;
+    color: black;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    color: #333;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Remove icon */
+.cartitems-format img {
+    cursor: pointer;
+    width: 20px;
+}
+
+/* Cart summary section */
+.cartitems-down {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.cartitems-total, .cartitems-promocode {
+    flex: 1;
+    min-width: 300px;
+    margin: 20px 10px;
+}
+
+/* Cart totals section */
+.cartitems-total {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.cartitems-total-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+/* Promocode section */
+.cartitems-promocode {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.cartitems-promobox {
+    display: flex;
+    margin-top: 10px;
+}
+
+.cartitems-promobox input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+}
+
+.cartitems-promobox button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cartitems-format-main, .cartitems-format {
+        grid-template-columns: 1fr 2fr 1fr 1fr 1fr; /* Adjusted to keep gaps visible on smaller screens */
+        gap: 10px;
+        text-align: left;
+    }
+
+    .cartitems-quantity {
+        width: 30px;
+        height: 30px;
+    }
+
+    .cartitems-total, .cartitems-promocode {
+        flex: 1 1 100%;
+        margin: 20px 0;
+    }
+}
+
+/* Ensure total is visible and aligned on mobile (480px or smaller) */
+@media (max-width: 480px) {
+    .cartitems-format-main, .cartitems-format {
+        grid-template-columns: 1fr 2fr 1fr 1fr 1fr; /* Same adjustment for mobile screens */
+        gap: 10px;
+    }
+
+    .cartitems-format img {
+        max-width: 40px;
+    }
+
+    /* Total price column always visible and in same row */
+    .cartitems-format p:nth-child(5) {
+        display: block;
+        margin: 0;
+        text-align: right;
+    }
+
+    .cartitems-format {
+        align-items: center;
+    }
+
+    .cartitems-total-item {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .cartitems-promobox {
+        flex-direction: column;
+    }
+
+    .cartitems-promobox input, .cartitems-promobox button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}

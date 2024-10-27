@@ -1,0 +1,50 @@
+.breadcum {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    color: #666;
+    padding: 10px;
+  }
+  
+  .breadcum img {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .breadcum a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .breadcum a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive for smaller screens */
+  @media (max-width: 768px) {
+    .breadcum {
+      font-size: 16px;
+      padding: 8px;
+      gap: 6px;
+    }
+  
+    .breadcum img {
+      width: 10px;
+      height: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .breadcum {
+      font-size: 14px;
+      padding: 6px;
+      gap: 4px;
+    }
+  
+    .breadcum img {
+      width: 8px;
+      height: 8px;
+    }
+  }
+  

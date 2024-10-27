@@ -1,0 +1,84 @@
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 20px;
+    background: linear-gradient(180deg, #e3dcdc 0%,#e1ffea22);
+    border-bottom: 2px solid #e1e1e1; /* Subtle border */
+  }
+  
+  .hero-left {
+    max-width: 600px;
+  }
+  
+  .hero-left h2 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .hero-left h1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: #e74c3c; 
+    margin-bottom: 20px;
+  }
+  
+  .hero-left p {
+    font-size: 18px;
+    color: #34495e;
+    margin-bottom: 30px; 
+  }
+  .explore-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff; 
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 30px; 
+    cursor: pointer;
+    transition: background-color 0.3s; 
+  }
+  
+  .explore-button:hover {
+    background-color: #c0392b;
+  }
+  .hero-right {
+    flex: 1; 
+    text-align: right; 
+  }
+  
+  .hero-image {
+    max-width: 100%;
+    height: auto; 
+    border-radius: 20px; 
+  }
+  
+  
+  @media (max-width: 768px) {
+    .hero {
+      flex-direction: column; 
+      align-items: center;
+      text-align: center; 
+    }
+  
+    .hero-left {
+      max-width: 100%;
+      margin-bottom: 20px; 
+    }
+  
+    .hero-left h1 {
+      font-size: 36px;
+    }
+  
+    .explore-button {
+      padding: 12px 25px; 
+      font-size: 16px;
+    }
+  
+    .hero-right {
+      text-align: center; 
+    }
+  }
+  
