@@ -1,0 +1,126 @@
+/* AddProduct.css */
+
+.add-product {
+    max-width: 300px; /* Maximum width for the form container */
+    margin: 20px 0; /* Remove auto center margin; maintain top/bottom spacing */
+    padding: 20px; /* Padding around the form */
+    background-color: #ffffff; /* Light background color */
+    border-radius: 8px; /* Rounded corners */
+}
+
+.addproduct-itemfield {
+    margin-bottom: 15px; /* Space between fields */
+}
+
+.addproduct-itemfield p {
+    margin: 0; /* Remove default margin */
+    font-weight: bold; /* Bold font for label */
+    font-size: 16px; /* Font size for label */
+}
+
+.addproduct-itemfield input,
+.add-product-itemfield select {
+    width: 100%; /* Full width for input and select */
+    padding: 8px; /* Reduced padding inside the input */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Rounded corners for input */
+    font-size: 14px; /* Smaller font size for input text */
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.addproduct-itemfield input:focus,
+.add-product-itemfield select:focus {
+    border-color: #007bff; /* Highlight border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+.addproduct-price {
+    display: flex; /* Use flexbox for price fields */
+    justify-content: space-between; /* Space between price fields */
+}
+
+.addproduct-price .addproduct-itemfield {
+    flex: 1; /* Make fields take equal space */
+    margin-right: 5px; /* Smaller space between fields */
+}
+
+.addproduct-price .addproduct-itemfield:last-child {
+    margin-right: 0; /* Remove margin for the last item */
+}
+
+.add-product-itemfield {
+    display: flex; /* Use flexbox for the upload area */
+    align-items: center; /* Center the image vertically */
+}
+
+.addproduct-thumnail-img {
+    width: 80px; /* Smaller width for upload area image */
+    height: 80px; /* Smaller height for upload area image */
+    object-fit: cover; /* Cover the image without distortion */
+    margin-right: 10px; /* Space between image and input */
+    cursor: pointer; /* Pointer cursor for upload area */
+}
+
+.addproduct-btn {
+    padding: 8px 12px; /* Smaller button padding */
+    background-color: #007bff; /* Primary button color */
+    color: white; /* Button text color */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 14px; /* Smaller font size for button */
+    transition: background-color 0.3s; /* Smooth transition */
+    width: 100%; /* Full width for button */
+}
+
+.addproduct-btn:hover {
+    background-color: #0056b3; /* Darker color on hover */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .add-product {
+        padding: 15px; /* Reduced padding on smaller screens */
+    }
+
+    .addproduct-itemfield p {
+        font-size: 14px; /* Smaller font size for labels */
+    }
+
+    .addproduct-itemfield input,
+    .add-product-itemfield select {
+        padding: 6px; /* Further reduced padding for inputs */
+        font-size: 13px; /* Smaller font size for input text */
+    }
+
+    .addproduct-thumnail-img {
+        width: 70px; /* Smaller width for upload area image */
+        height: 70px; /* Smaller height for upload area image */
+    }
+}
+
+@media (max-width: 480px) {
+    .add-product {
+        padding: 10px; /* Further reduced padding */
+    }
+
+    .addproduct-itemfield p {
+        font-size: 12px; /* Smaller font size for labels */
+    }
+
+    .addproduct-itemfield input,
+    .add-product-itemfield select {
+        padding: 5px; /* Smaller padding for inputs */
+        font-size: 12px; /* Smaller font size for input text */
+    }
+
+    .addproduct-thumnail-img {
+        width: 60px; /* Even smaller width for upload area image */
+        height: 60px; /* Even smaller height for upload area image */
+    }
+
+    .addproduct-btn {
+        padding: 6px 10px; /* Smaller button padding */
+        font-size: 12px; /* Smaller font size for button */
+    }
+}

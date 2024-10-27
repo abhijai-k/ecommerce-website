@@ -1,0 +1,29 @@
+/* Navbar.css */
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Space between logo and profile */
+    align-items: center; /* Center vertically */
+    background: linear-gradient(to right, #ffffff, #ffffff); /* Same gradient as sidebar */
+    color: #ecf0f1; /* Light text color */
+    padding: 15px 30px; /* Padding for the navbar */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+}
+
+.nav-logo {
+    width: 120px; /* Logo size */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.nav-profile {
+    width: 40px; /* Profile image size */
+    height: 40px; /* Profile image size */
+    border-radius: 50%; /* Circular profile picture */
+    border: 2px solid #ecf0f1; /* Light border around profile image */
+    transition: transform 0.3s; /* Smooth scaling transition */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.nav-profile:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
