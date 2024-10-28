@@ -9,7 +9,7 @@ const getDefaultCart = () => {
         cart[index] = 0;
     }
     return cart;
-}
+};
 
 const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState(getDefaultCart());
@@ -20,11 +20,11 @@ const ShopContextProvider = (props) => {
             console.log(updatedCart); // Log the updated cart
             return updatedCart;
         });
-    }
+    };
 
     const removeFromCart = (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: Math.max(prev[itemId] - 1, 0) }));
-    }
+    };
 
     const getTotalCartAmount = () => {
         let totalAmount = 0;
@@ -35,27 +35,38 @@ const ShopContextProvider = (props) => {
             }
         }
         return totalAmount;
-    }
+    };
 
-    const getTotalCartItems = () =>{
+    const getTotalCartItems = () => {
         let totalItem = 0;
-        for(const item in cartItems)
-        {
-            if(cartItems[item]>0)
-            {
+        for (const item in cartItems) {
+            if (cartItems[item] > 0) {
                 totalItem += cartItems[item];
             }
         }
         return totalItem;
-    }
+    };
 
-    const contextValue = { getTotalCartItems, getTotalCartAmount, all_product, cartItems, addToCart, removeFromCart };
-    
+    // Define the clearCart function
+    const clearCart = () => {
+        setCartItems(getDefaultCart()); // Reset cartItems to default empty cart
+    };
+
+    const contextValue = { 
+        getTotalCartItems, 
+        getTotalCartAmount, 
+        all_product, 
+        cartItems, 
+        addToCart, 
+        removeFromCart, 
+        clearCart // Add clearCart to contextValue
+    };
+
     return (
         <ShopContext.Provider value={contextValue}>
             {props.children}
         </ShopContext.Provider>
     );
-}
+};
 
 export default ShopContextProvider;

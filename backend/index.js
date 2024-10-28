@@ -1,91 +1,43 @@
-// index.js
-const express = require('express');
-const mongoose = require('mongoose');
-const multer = require('multer');
-const path = require('path');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-require('dotenv').config(); // Load environment variables from .env file
+const nodemailer = require('nodemailer'); // or use Sendinblue API directly if you prefer
 
-const app = express();
-const PORT = 4000;
+// Endpoint for checkout
+app.post('/api/checkout', async (req, res) => {
+  const { products, totalAmount, customerEmail } = req.body;
 
-// Middleware
-app.use(cors());
-app.use(bodyParser.json());
-app.use(express.static('uploads')); // Serve static files from 'uploads' directory
+  // Create a new order
+  const order = new Order({ products, totalAmount, customerEmail });
 
-// MongoDB connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/productDB', {
-  useNewUrlParser: true, 
-  useUnifiedTopology: true
-})
-.then(() => console.log('MongoDB connected'))
-.catch((err) => console.log('MongoDB connection error:', err));
-
-// Define Product Schema
-const productSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  image: { type: String, required: true },
-  category: { type: String, required: true },
-  new_price: { type: Number, required: true },
-  old_price: { type: Number, required: true },
-}, { timestamps: true });
-
-const Product = mongoose.model('Product', productSchema);
-
-// Set up multer for file uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // Append timestamp to file name
-  },
-});
-
-const upload = multer({ storage: storage });
-
-// Endpoint for uploading images
-app.post('/api/upload', upload.single('product'), (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ success: false, message: 'No file uploaded' });
-  }
-
-  const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-  res.json({ success: true, image_url: imageUrl });
-});
-
-// Endpoint for adding a product
-app.post('/api/addproduct', async (req, res) => {
-  const product = new Product(req.body);
   try {
-    await product.save();
-    res.json({ success: true });
+    // Save order to database
+    await order.save();
+
+    // Email order details to admin
+    const adminEmail = process.env.ADMIN_EMAIL;
+
+    // Configure email transporter
+    const transporter = nodemailer.createTransport({
+      service: 'Sendinblue', // or Firebase if you've set it up
+      auth: {
+        user: process.env.EMAIL_USER, 
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+    // Order details for the email
+    const orderDetails = products.map(item => `Product ID: ${item.productId}, Quantity: ${item.quantity}`).join('\n');
+
+    // Send email
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: adminEmail,
+      subject: 'New Order Received',
+      text: `New order received:\n\nOrder details:\n${orderDetails}\n\nTotal Amount: $${totalAmount}`
+    });
+
+    res.json({ success: true, message: 'Order placed and email sent to admin' });
+
   } catch (error) {
-    console.error('Error saving product:', error);
-    res.status(500).json({ success: false, message: 'Failed to add product' });
+    console.error('Error during checkout:', error);
+    res.status(500).json({ success: false, message: 'Failed to process order' });
   }
-});
-
-// Endpoint for fetching products
-app.get('/api/products', async (req, res) => {
-  try {
-    const products = await Product.find();
-    res.json(products);
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    res.status(500).json({ message: 'Failed to fetch products' });
-  }
-});
-
-// Create the uploads directory if it doesn't exist
-const fs = require('fs');
-if (!fs.existsSync('uploads')) {
-  fs.mkdirSync('uploads');
-}
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
 });
